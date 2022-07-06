@@ -1,0 +1,43 @@
+<form fxLayout="column" autocomplete="off" [formGroup]="miFormulario"  (ngSubmit)="registro()">
+  <mat-form-field appearance="outline">
+    <mat-label>Nombre</mat-label>
+    <input formControlName="nombre" matInput placeholder="Nombre de usuario" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Correo</mat-label>
+    <input formControlName="correo" matInput placeholder="Correo Electronico" />
+  </mat-form-field>
+
+  <div fxLayout="row" fxLayoutGap="10">
+     <mat-form-field appearance="outline" fxFlex="50">
+    <mat-label>Password</mat-label>
+    <input formControlName="password" matInput [type]="hide ? 'password' : 'text'"  placeholder="Ingresa tu contraseña"/>
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="hide = !hide"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide"
+    >
+      <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+    </button>
+  </mat-form-field>
+
+   <mat-form-field appearance="outline" fxFlex="50">
+    <mat-label>Repetir Password</mat-label>
+    <input formControlName="password2" matInput [type]="hide ? 'password' : 'text'" placeholder="Repite tu contraseña"/>
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="hide = !hide"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide"
+    >
+      <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+    </button>
+  </mat-form-field>
+  </div>
+
+   <button type="submit" class="btnSubmit" mat-raised-button color="primary">Crear Usuario</button>
+</form>

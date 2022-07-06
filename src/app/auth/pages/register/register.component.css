@@ -1,0 +1,13 @@
+form {
+  margin-top: 1rem;
+}
+
+mat-form-field {
+  margin-top: 5px;
+  width: 100%;
+}
+
+.btnSubmit {
+  margin-top: 5px;
+  border-radius: 30px;
+}

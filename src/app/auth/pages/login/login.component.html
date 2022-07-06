@@ -1,0 +1,18 @@
+  <form fxLayout="column" [formGroup]="miFormulario" (ngSubmit)="login()">
+          <mat-form-field appearance="outline">
+            <mat-label>Correo</mat-label>
+            <input matInput formControlName="correo" placeholder="Correo Electronico" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password"  [type]="hide ? 'password' : 'text'" />
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <small>¿No tienes cuenta?, pulsa el boton de registro...</small>
+
+          <button  type="submit"class="btnSubmit" mat-raised-button color="primary">Ingresar</button>
+ </form>
