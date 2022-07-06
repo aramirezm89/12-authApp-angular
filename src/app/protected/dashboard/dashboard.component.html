@@ -1,1 +1,46 @@
-<p>dashboard works!</p>
+<div class="container"  fxLayout="row"
+    fxLayoutAlign="center start"
+   >
+
+    <div  style="margin-top: 40px" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10" fxFlex="100" fxFlex.xs="100">
+
+      <div fxLayout="column" fxLayoutAlign="center center" fxFlex.xs="100">
+         <h1>Dashboard</h1>
+      <mat-divider></mat-divider>
+      <p>Esta pagina solo funciona si estas autenticado.</p>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="center start" class="tabla-container" >
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+          <!-- nombre Column -->
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="correo">
+            <th mat-header-cell *matHeaderCellDef>Correo</th>
+            <td mat-cell *matCellDef="let element">{{ element.correo }}</td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="token">
+            <th mat-header-cell *matHeaderCellDef>Token</th>
+            <td mat-cell *matCellDef="let element">{{ element.token }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+
+          <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+
+      </div>
+
+    </div>
+  </div>
+
