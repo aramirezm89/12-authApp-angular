@@ -26,17 +26,20 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login() {
-    console.log(this.miFormulario.value);
-    console.log(this.miFormulario.valid);
+
     const { email, password } = this.miFormulario.value;
 
     if (this.miFormulario.valid) {
       this.authService.login(email, password).subscribe({
         next: (response) => {
-          if (response.ok === true) {
-            this.mostrarSnackBar(response.message!,'mat-accent')
+          if (response === true) {
+
+            this.mostrarSnackBar('Bienvenido','mat-accent')
             this.router.navigateByUrl('/dashboard');
 
+          }else{
+            console.log(response)
+               this.mostrarSnackBar(response, 'mat-warn');
           }
         },
         error: (err) => {
