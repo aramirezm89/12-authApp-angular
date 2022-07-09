@@ -1,15 +1,21 @@
   <form fxLayout="column" [formGroup]="miFormulario" (ngSubmit)="login()">
           <mat-form-field appearance="outline">
             <mat-label>Correo</mat-label>
-            <input matInput formControlName="email" placeholder="Correo Electronico" />
+            <input matInput formControlName="email" placeholder="abcde@ggg.com" />
+            <mat-error>
+              Formato de correo no valido
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
             <mat-label>Password</mat-label>
-            <input matInput formControlName="password"  [type]="hide ? 'password' : 'text'" autocomplete="off" />
+            <input matInput formControlName="password"  [type]="hide ? 'password' : 'text'" autocomplete="off" placeholder="contraseña minimo 6 caracteres" />
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
             </button>
+            <mat-error>
+              La contraseña debe contener minimo 6 caracteres.
+            </mat-error>
           </mat-form-field>
 
           <small>¿No tienes cuenta?, pulsa el boton de registro...</small>

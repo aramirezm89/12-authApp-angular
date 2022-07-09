@@ -2,17 +2,23 @@
   <mat-form-field appearance="outline">
     <mat-label>Nombre</mat-label>
     <input formControlName="nombre" matInput placeholder="Nombre de usuario" />
+    <mat-error>
+      Campo requerido
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Correo</mat-label>
     <input formControlName="correo" matInput placeholder="Correo Electronico" />
+    <mat-error>
+      Campo requerido, email no valido
+    </mat-error>
   </mat-form-field>
 
   <div fxLayout="row" fxLayoutGap="10">
      <mat-form-field appearance="outline" fxFlex="50">
     <mat-label>Password</mat-label>
-    <input formControlName="password" matInput [type]="hide ? 'password' : 'text'"  placeholder="Ingresa tu contraseña"/>
+    <input formControlName="password" matInput [type]="hide ? 'password' : 'text'"  placeholder="Contraseña minimo 6 caracteres"/>
     <button
       mat-icon-button
       matSuffix
@@ -22,6 +28,9 @@
     >
       <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
     </button>
+    <mat-error>
+      Campo requerido, minimo 6 caracteres
+    </mat-error>
   </mat-form-field>
 
    <mat-form-field appearance="outline" fxFlex="50">
@@ -36,6 +45,9 @@
     >
       <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
     </button>
+    <mat-error>
+     Las contraseñas no coinciden
+    </mat-error>
   </mat-form-field>
   </div>
 

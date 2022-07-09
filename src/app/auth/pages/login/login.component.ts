@@ -12,8 +12,8 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
   hide = true;
   miFormulario: FormGroup = this.fb.group({
-    email: ['', [Validators.email]],
-    password: ['', [Validators.minLength(6)]],
+    email: ['', [Validators.email, Validators.required]],
+    password: ['', [Validators.minLength(6),Validators.required]],
   });
 
   constructor(
@@ -27,19 +27,18 @@ export class LoginComponent implements OnInit {
 
   login() {
 
-    const { email, password } = this.miFormulario.value;
-
-    if (this.miFormulario.valid) {
+    if (this.miFormulario.valid ) {
+       const { email, password } = this.miFormulario.value;
       this.authService.login(email, password).subscribe({
         next: (response) => {
           if (response === true) {
 
             this.mostrarSnackBar('Bienvenido','mat-accent')
+
             this.router.navigateByUrl('/dashboard');
 
           }else{
-            console.log(response)
-               this.mostrarSnackBar(response, 'mat-warn');
+               this.mostrarSnackBar(response , 'mat-warn');
           }
         },
         error: (err) => {
@@ -47,17 +46,21 @@ export class LoginComponent implements OnInit {
         },
       });
     }
+
+
+
+
   }
 
   mostrarSnackBar(message: string, clase: string) {
 
     //la clase que recibe debe ser porejemplo mat-war , mat-primary etc..
-    this.snackBar.open(message, '', {
+    this.snackBar.open(message,'', {
       duration: 2500,
       verticalPosition: 'top',
       horizontalPosition: 'end',
       panelClass: ['mat-toolbar', clase],
-    });
+    })
 
   }
 }
