@@ -11,20 +11,21 @@ export class AuthService {
   private _usuario!: Usuario;
 
   get usuario() {
-    return { ...this._usuario };
+    return  this._usuario ;
   }
 
   constructor(private http: HttpClient) {}
 
 
   crearUSuario(name:string,email:string,password:string){
+    this.logout();
     const url: string = `${this.baseURL}/auth/new`;
     const usuario = {name,email,password}
     return this.http.post<AuthResponse>(url,usuario).pipe(
       tap(authResponse =>{
         if(authResponse.ok){
           localStorage.setItem('token', authResponse.token!);
-          this._usuario = { name: authResponse.name!, uid: authResponse.uid! };
+
         }
       }),
       map(resp => resp.ok),
@@ -40,7 +41,7 @@ export class AuthService {
       tap((authResponse) => {
         if (authResponse.ok) {
           localStorage.setItem('token', authResponse.token!);
-          this._usuario = { name: authResponse.name!, uid: authResponse.uid! };
+
         }
       }),
       map((resp) => resp.ok),
@@ -54,8 +55,12 @@ export class AuthService {
     const headers = new HttpHeaders().set('x-token',localStorage.getItem('token') || '')
     return this.http.get<AuthResponse>(url,{headers}).pipe(
       map(authResponse =>{
+              this._usuario = {
+                name: authResponse.name,
+                uid: authResponse.uid,
+                email: authResponse.email,
+              };
            localStorage.setItem('token', authResponse.token!);
-           this._usuario = { name: authResponse.name!, uid: authResponse.uid! };
         return authResponse.ok
       }),
       catchError(err => of(false))

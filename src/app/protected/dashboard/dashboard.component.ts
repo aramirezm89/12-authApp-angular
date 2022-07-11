@@ -14,16 +14,17 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 })
 export class DashboardComponent implements OnInit {
   dataSource: Usuario[] = []
-  displayedColumns: string[] = ['nombre','uid'];
+  displayedColumns: string[] = ['nombre','uid','email'];
 
   get usuario(){
-    return this.authService.usuario
+    return {...this.authService.usuario}
   }
 
   constructor(private router : Router, private authService : AuthService) {}
 
   ngOnInit(): void {
     this.dataSource.push(this.usuario)
+    console.log(this.usuario)
   }
 
   logout(){
